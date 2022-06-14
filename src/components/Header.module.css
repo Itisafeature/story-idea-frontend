@@ -1,0 +1,19 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightcoral;
+}
+
+.main-header img {
+  flex: 0 1 auto;
+  margin: 10px 0 10px 10px;
+  width: 10%;
+  border-radius: 10px;
+}
+
+.nav-ul {
+  display: flex;
+  justify-content: flex-end;
+  /* align-items: flex-end; */
+}
