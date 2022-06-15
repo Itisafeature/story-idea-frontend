@@ -1,4 +1,5 @@
 .main-header {
+  height: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,14 +7,42 @@
 }
 
 .main-header img {
-  flex: 0 1 auto;
   margin: 10px 0 10px 10px;
-  width: 10%;
+  width: 100%;
   border-radius: 10px;
 }
 
-.nav-ul {
+.img-link {
+  width: 10%;
+}
+
+.nav {
+  height: 100%;
+}
+
+.nav-links {
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
-  /* align-items: flex-end; */
+  align-items: flex-end;
+  list-style-type: none;
+  margin: 0;
+}
+
+.nav-item {
+  padding-bottom: 10px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.nav-item a:hover {
+  color: rgb(237, 200, 212);
+}
+
+.nav-item a.active {
+  color: purple;
 }

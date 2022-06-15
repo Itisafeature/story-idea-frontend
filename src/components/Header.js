@@ -1,18 +1,54 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../images/logo.png';
 import styles from './Header.module.css';
 
 const Header = () => {
   return (
     <header className={styles['main-header']}>
-      <img src={logo} />
-      <nav>
-        <ul className={styles['nav-ul']}>
-          <li>
-            <NavLink to="/about">About</NavLink>
+      <Link className={styles['img-link']} to="/">
+        <img src={logo} alt="logo" />
+      </Link>
+      <nav className={styles.nav}>
+        <ul className={styles['nav-links']}>
+          <li className={styles['nav-item']}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+              to="/new-idea"
+            >
+              New Idea
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/new-idea">New Idea</NavLink>
+          <li className={styles['nav-item']}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+              to="/ideas"
+            >
+              See Ideas
+            </NavLink>
+          </li>
+          <li className={styles['nav-item']}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+              to="/most-recently-commented"
+            >
+              Recently Commented
+            </NavLink>
+          </li>
+          <li className={styles['nav-item']}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+              to="/about"
+            >
+              About
+            </NavLink>
           </li>
         </ul>
       </nav>
