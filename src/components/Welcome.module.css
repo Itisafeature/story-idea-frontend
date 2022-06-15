@@ -1,0 +1,56 @@
+.card-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.welcome-card {
+  /* border: 1px solid grey; */
+  border-radius: 20px;
+  width: 50%;
+  background-color:mistyrose;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-card > h1 {
+  text-align: center;
+  color: midnightblue;
+}
+
+.welcome-card > p {
+  text-align: center;
+  padding: 5px;
+}
+
+.welcome-navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.welcome-navigation > li > a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+  color: deepskyblue;
+}
+
+.welcome-navigation > li > a:hover {
+  color: crimson;
+}
+
+.welcome-navigation > li > a:focus {
+  color: deepskyblue;
+}
+
+.welcome-card > img {
+  width: 30%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
