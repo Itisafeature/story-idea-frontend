@@ -1,0 +1,27 @@
+.new-idea-title {
+  text-align: center;
+}
+
+.errors {
+  text-align: center;
+  background: rgb(248, 58, 58);
+  border-radius: 10px;
+  color: white;
+  padding: 2px 0 2px 0;
+}
+
+.new-idea-form {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input {
+  width: 50%;
+}
+
+.content {
+  width: 80%;
+}
