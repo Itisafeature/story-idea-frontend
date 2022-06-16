@@ -1,9 +1,22 @@
+.form-container {
+  background: rgba(255, 230, 255, 0.5);
+  height: 80%;
+  width: 80%;
+  margin: 20px auto 0px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .new-idea-title {
   text-align: center;
+  color: #5397cf;
 }
 
 .errors {
   text-align: center;
+  margin: 0 auto 10px auto;
+  width: 80%;
   background: rgb(248, 58, 58);
   border-radius: 10px;
   color: white;
@@ -15,7 +28,15 @@
   flex-grow: 1;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+}
+
+.input-label {
+  font-size: 1.2rem;
+}
+
+.input,
+.content {
+  margin-bottom: 20px;
 }
 
 .input {
@@ -23,5 +44,23 @@
 }
 
 .content {
+  height: 50%;
   width: 80%;
+  resize: none;
+}
+
+.submit-btn {
+  width: 20%;
+  font-size: 1.2rem;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #ffd4ac;
+  color: #99cef4;
+}
+
+.submit-btn:hover {
+  background: #99cef4;
+  color: #ffd4ac;
+  cursor: pointer;
 }

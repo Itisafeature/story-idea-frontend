@@ -43,7 +43,9 @@ const NewIdea = () => {
       <h1 className={styles['new-idea-title']}>Submit Your Idea!</h1>
       {isError && <div className={styles.errors}>{renderErrors()}</div>}
       <form className={styles['new-idea-form']} onSubmit={submitIdeaHandler}>
-        <label htmlFor="new-idea-title">Title</label>
+        <label class={styles['input-label']} htmlFor="new-idea-title">
+          Title
+        </label>
         <input
           onChange={e => setTitle(e.target.value)}
           value={title}
@@ -51,14 +53,18 @@ const NewIdea = () => {
           id="new-idea-title"
           className={styles.input}
         />
-        <label htmlFor="new-idea-content">Content</label>
+        <label class={styles['input-label']} htmlFor="new-idea-content">
+          Content
+        </label>
         <textarea
           onChange={e => setContent(e.target.value)}
           value={content}
           id="new-idea-content"
           className={styles.content}
         ></textarea>
-        <button type="submit">Submit Idea</button>
+        <button className={styles['submit-btn']} type="submit">
+          Submit Idea
+        </button>
       </form>
     </div>
   );
