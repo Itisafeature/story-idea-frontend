@@ -43,7 +43,7 @@ const NewIdea = () => {
       <h1 className={styles['new-idea-title']}>Submit Your Idea!</h1>
       {isError && <div className={styles.errors}>{renderErrors()}</div>}
       <form className={styles['new-idea-form']} onSubmit={submitIdeaHandler}>
-        <label class={styles['input-label']} htmlFor="new-idea-title">
+        <label className={styles['input-label']} htmlFor="new-idea-title">
           Title
         </label>
         <input
@@ -53,7 +53,7 @@ const NewIdea = () => {
           id="new-idea-title"
           className={styles.input}
         />
-        <label class={styles['input-label']} htmlFor="new-idea-content">
+        <label className={styles['input-label']} htmlFor="new-idea-content">
           Content
         </label>
         <textarea

@@ -1,0 +1,13 @@
+.carousel-container {
+  height: 100%;
+}
+
+.carousel {
+  height: 100%;
+}
+
+.carousel > ul {
+  height: 100%;
+  text-align: center;
+  align-items: center;
+}
