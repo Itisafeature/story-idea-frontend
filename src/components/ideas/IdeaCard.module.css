@@ -1,6 +1,27 @@
-.idea-card {
+.idea-card__link {
+  height: 300px;
   background: #fab3b3;
   margin: 8px;
   padding: 48px;
+  border-radius: 15px;
+  display: inline-block;
+  text-decoration: none;
 }
 
+.idea-card__link:hover {
+  background: #7403b9;
+}
+
+
+.idea-card__link > h1 {
+  color: #7403b9;
+}
+
+.idea-card__link > p {
+  color: black;
+}
+
+.idea-card__link:hover > h1, 
+.idea-card__link:hover > p {
+  color: #fab3b3;
+}

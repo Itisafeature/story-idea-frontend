@@ -34,6 +34,7 @@ const IdeasList = () => {
 
   return (
     <div className={styles['carousel-container']}>
+      <h1>Look through Ideas!</h1>
       <Carousel
         additionalTransfrom={0}
         arrows
@@ -76,7 +77,6 @@ const IdeasList = () => {
         rewindWithAnimation={false}
         rtl={false}
         shouldResetAutoplay
-        showDots
         sliderClass=""
         slidesToSlide={3}
         swipeable
