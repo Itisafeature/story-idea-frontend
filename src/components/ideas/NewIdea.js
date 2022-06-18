@@ -1,40 +1,31 @@
 import { useState } from 'react';
+import useApiRequest from '../../hooks/useApiRequest';
 import styles from './NewIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas';
 
 const NewIdea = () => {
+  const { isLoading, isError, errorMessage, sendRequest, data } =
+    useApiRequest();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [isError, setIsError] = useState(null);
-  const [errorMessages, setErrorMessages] = useState(null);
+
+  const resetForm = () => {
+    setTitle('');
+    setContent('');
+  };
 
   const submitIdeaHandler = async e => {
     e.preventDefault();
     const newIdea = { title, content };
-    const response = await fetch(URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newIdea),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      setIsError(true);
-      setErrorMessages(Object.values(data));
-    } else {
-      setTitle('');
-      setContent('');
-      setIsError(false);
-      setErrorMessages([]);
-    }
+    sendRequest(URL, 'post', newIdea, resetForm);
   };
 
   const renderErrors = () => {
-    return errorMessages.map(err => (
-      <p className={styles['error__item']}>{err}</p>
+    return Object.values(errorMessage).map((err, idx) => (
+      <p key={idx} className={styles['error__item']}>
+        {err}
+      </p>
     ));
   };
 

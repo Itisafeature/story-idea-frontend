@@ -22,7 +22,7 @@ const useApiRequest = () => {
     return options;
   };
 
-  const sendRequest = useCallback(async (url, method, body) => {
+  const sendRequest = useCallback(async (url, method, body, cleanupFn) => {
     const options = configureRequest(method, body);
 
     try {
@@ -32,8 +32,13 @@ const useApiRequest = () => {
       if (!response.ok) {
         setIsError(true);
         setErrorMessage(data);
+        debugger;
       } else {
         setData(data.data);
+        debugger;
+        setIsError(false);
+        setErrorMessage(null);
+        if (cleanupFn) cleanupFn();
       }
     } catch (err) {
       setIsError(true);

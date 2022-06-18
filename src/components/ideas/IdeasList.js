@@ -12,16 +12,8 @@ const IdeasList = () => {
     useApiRequest();
 
   useEffect(() => {
-    const makeApiRequest = async () => {
-      await sendRequest(URL, 'get', null);
-    };
-    makeApiRequest();
-    // console.log(ideas);
+    sendRequest(URL, 'get', null);
   }, [sendRequest]);
-
-  // const [loading, setLoading] = useState(true);
-  // const [isError, setIsError] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState('');
 
   console.log(data);
 
