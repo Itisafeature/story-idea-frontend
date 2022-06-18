@@ -7,7 +7,7 @@ const NewIdea = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isError, setIsError] = useState(null);
-  const [errorMessages, setErrorMessages] = useState();
+  const [errorMessages, setErrorMessages] = useState(null);
 
   const submitIdeaHandler = async e => {
     e.preventDefault();

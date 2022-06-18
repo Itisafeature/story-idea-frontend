@@ -1,36 +1,29 @@
 import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
-
 import IdeaCard from './IdeaCard';
-
+import useApiRequest from '../../hooks/useApiRequest';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './IdeasList.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas';
 
 const IdeasList = () => {
-  const [ideas, setIdeas] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const { isLoading, isError, errorMessage, sendRequest, data } =
+    useApiRequest();
 
   useEffect(() => {
-    const getIdeas = async () => {
-      const response = await fetch(URL);
-      const data = await response.json();
-
-      if (!response.ok) {
-        setIsError(true);
-        setErrorMessage(data);
-      } else {
-        setIdeas(data.data);
-      }
-
-      setLoading(false);
+    const makeApiRequest = async () => {
+      await sendRequest(URL, 'get', null);
     };
+    makeApiRequest();
+    // console.log(ideas);
+  }, [sendRequest]);
 
-    getIdeas();
-  }, []);
+  // const [loading, setLoading] = useState(true);
+  // const [isError, setIsError] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+
+  console.log(data);
 
   return (
     <div className={styles['carousel-container']}>
@@ -81,8 +74,8 @@ const IdeasList = () => {
         slidesToSlide={3}
         swipeable
       >
-        {ideas.map(idea => (
-          <IdeaCard idea={idea} />
+        {data.map(idea => (
+          <IdeaCard key={idea.id} idea={idea} />
         ))}
       </Carousel>
     </div>
