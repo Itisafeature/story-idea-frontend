@@ -3,11 +3,11 @@ import Carousel from 'react-multi-carousel';
 import IdeaCard from './IdeaCard';
 import useApiRequest from '../../hooks/useApiRequest';
 import 'react-multi-carousel/lib/styles.css';
-import styles from './IdeasList.module.css';
+import styles from './RecentlyCommented.module.css';
 
-const URL = 'http://localhost:3001/api/v1/ideas';
+const URL = 'http://localhost:3001/api/v1/ideas/recently-commented';
 
-const IdeasList = () => {
+const RecentlyCommented = () => {
   const { isLoading, isError, errorMessage, sendRequest, data } =
     useApiRequest();
 
@@ -15,11 +15,9 @@ const IdeasList = () => {
     sendRequest(URL, 'get', null);
   }, [sendRequest]);
 
-  console.log(data);
-
   return (
     <div className={styles['carousel-container']}>
-      <h1>Look through Ideas!</h1>
+      <h1>Recently Commented on Ideas</h1>
       <Carousel
         additionalTransfrom={0}
         arrows
@@ -62,7 +60,6 @@ const IdeasList = () => {
         rewindWithAnimation={false}
         rtl={false}
         shouldResetAutoplay
-        sliderClass=""
         slidesToSlide={3}
         swipeable
       >
@@ -74,4 +71,4 @@ const IdeasList = () => {
   );
 };
 
-export default IdeasList;
+export default RecentlyCommented;
