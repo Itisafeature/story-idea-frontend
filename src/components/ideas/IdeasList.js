@@ -82,7 +82,7 @@ const IdeasList = () => {
         swipeable
       >
         {ideas.map(idea => (
-          <IdeaCard idea={idea} />
+          <IdeaCard key={idea.id} idea={idea} />
         ))}
       </Carousel>
     </div>

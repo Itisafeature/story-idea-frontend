@@ -3,7 +3,7 @@ import styles from './IdeaCard.module.css';
 
 const IdeaCard = ({ idea }) => {
   return (
-    <article className="idea-card">
+    <article className={styles['idea-card']}>
       <Link
         to={`/ideas/${idea.id}`}
         className={styles['idea-card__link']}
