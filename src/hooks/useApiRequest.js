@@ -32,10 +32,8 @@ const useApiRequest = () => {
       if (!response.ok) {
         setIsError(true);
         setErrorMessage(data);
-        debugger;
       } else {
         setData(data.data);
-        debugger;
         setIsError(false);
         setErrorMessage(null);
         if (cleanupFn) cleanupFn();
