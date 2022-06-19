@@ -29,3 +29,11 @@
 .idea-card__link:hover > p {
   color: #fab3b3;
 }
+
+.idea-card.main-list {
+  height: 200px;
+}
+
+.idea-card__link.main-list h1 {
+  text-align: center;
+}

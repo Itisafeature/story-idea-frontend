@@ -1,0 +1,15 @@
+.list-header {
+  text-align: center;
+  margin-bottom: 0;
+  color: rgb(132, 193, 247); 
+}
+
+.ideas-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.end {
+  text-align: center;
+  font-weight: 600;
+}
