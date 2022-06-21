@@ -52,6 +52,7 @@ const useApiRequest = () => {
     errorMessage,
     sendRequest,
     data,
+    setData,
   };
 };
 

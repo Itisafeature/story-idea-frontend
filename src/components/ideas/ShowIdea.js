@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useApiRequest from '../../hooks/useApiRequest';
+import NewComment from '../comments/NewComment';
 import styles from './ShowIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas/';
@@ -21,10 +22,13 @@ const ShowIdea = () => {
 
   return (
     <section>
-      <article>
+      <article className={styles.idea}>
         <h1>{idea.title}</h1>
-        <div>
-          <p>{idea.content}</p>
+        <p>{idea.content}</p>
+        <div className={styles.comments}>
+          <div className={styles['add-comment-container']}>
+            <NewComment ideaId={idea.id} />
+          </div>
         </div>
       </article>
     </section>

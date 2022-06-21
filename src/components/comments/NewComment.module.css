@@ -1,0 +1,17 @@
+.leave-comment {
+  text-align: center;
+}
+
+.comment-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+
+
+.comment-content {
+  margin: auto;
+  height: 100px;
+  width: 50%;
+  resize: none;
+}

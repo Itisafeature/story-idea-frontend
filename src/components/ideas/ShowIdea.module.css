@@ -1,0 +1,26 @@
+.idea {
+  background: rgba(255, 230, 255, 0.5);
+  width: 90%;
+  margin: 20px auto 0px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.idea > h1 {
+  font-size: 1.5rem;
+}
+
+.idea > p {
+  white-space: pre-wrap;
+  margin: auto;
+}
+
+.comments {
+  width: 100%;
+}
+
+.add-comment-container {
+  width: 100%;
+}
