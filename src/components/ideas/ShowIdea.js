@@ -25,9 +25,12 @@ const ShowIdea = () => {
       <article className={styles.idea}>
         <h1>{idea.title}</h1>
         <p>{idea.content}</p>
-        <div className={styles.comments}>
+        <div className={styles['comments-container']}>
           <div className={styles['add-comment-container']}>
             <NewComment ideaId={idea.id} />
+          </div>
+          <div className={styles.comments}>
+            <CommentsList comments={idea.comments} />
           </div>
         </div>
       </article>
