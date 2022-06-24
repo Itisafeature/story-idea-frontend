@@ -1,0 +1,22 @@
+.comments {
+  margin-top: 30px;
+}
+
+.comment-card {
+  background: white;
+  border: 1px solid black;
+  height: 100px;
+  overflow-y: auto;
+  width: 80%;
+  margin: 0 auto 5px auto;
+  border-radius: 10px;
+}
+
+.comment-card > p {
+  white-space: pre-wrap;
+  margin-left: 10px;
+}
+
+.comment-card p:first-of-type {
+  font-weight: 600;
+}
