@@ -53,7 +53,9 @@ const NewIdea = () => {
           id="new-idea-content"
           className={styles.content}
         ></textarea>
-        <ActionButton type="submit">Submit Idea</ActionButton>
+        <ActionButton widened={true} type="submit">
+          Submit Idea
+        </ActionButton>
       </form>
     </div>
   );
