@@ -14,18 +14,3 @@
   resize: none;
   margin-bottom: 20px;
 }
-
-.comment-form > button {
-  font-size: 1.2rem;
-  padding: 16px;
-  border-radius: 10px;
-  border: none;
-  background: #ffd4ac;
-  color: #99cef4;
-}
-
-.comment-form > button:hover {
-  background: #99cef4;
-  color: #ffd4ac;
-  cursor: pointer;
-}

@@ -9,8 +9,7 @@ const URL = 'http://localhost:3001/api/v1/ideas/';
 
 const ShowIdea = () => {
   const [comments, setComments] = useState([]);
-  const { isLoading, isError, errorMessage, sendRequest, data } =
-    useApiRequest();
+  const { isLoading, isError, sendRequest, data } = useApiRequest();
   const { id } = useParams();
   const { attributes: idea } = data;
 
@@ -30,6 +29,10 @@ const ShowIdea = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Sorry there was an error.</div>;
   }
 
   return (

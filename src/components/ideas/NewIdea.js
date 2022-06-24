@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import useApiRequest from '../../hooks/useApiRequest';
+import ActionButton from '../UI/ActionButton';
 import styles from './NewIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas';
 
 const NewIdea = () => {
-  const { isLoading, isError, errorMessage, sendRequest, data } =
-    useApiRequest();
+  const { isError, errorMessage, sendRequest, data } = useApiRequest();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -53,9 +53,7 @@ const NewIdea = () => {
           id="new-idea-content"
           className={styles.content}
         ></textarea>
-        <button className={styles['submit-btn']} type="submit">
-          Submit Idea
-        </button>
+        <ActionButton type="submit">Submit Idea</ActionButton>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ActionButton from '../UI/ActionButton';
 import styles from './NewComment.module.css';
 
 const URL = 'http://localhost:3001/api/v1/comments';
@@ -40,7 +41,7 @@ const NewComment = ({ addComment, ideaId }) => {
           value={content}
           className={styles['comment-content']}
         ></textarea>
-        <button type="submit">Leave Comment</button>
+        <ActionButton type="submit">Leave a Comment</ActionButton>
       </form>
     </>
   );
