@@ -19,7 +19,7 @@
 
 .idea-card__link > h1 {
   color: #7403b9;
-  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .idea-card__link > p {
