@@ -40,16 +40,6 @@ const Header = () => {
               Recently Commented
             </NavLink>
           </li>
-          <li className={styles['nav-item']}>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.active : undefined
-              }
-              to="/about"
-            >
-              About
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </header>
