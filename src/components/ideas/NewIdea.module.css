@@ -13,16 +13,6 @@
   color: #5397cf;
 }
 
-.errors {
-  text-align: center;
-  margin: 0 auto 10px auto;
-  width: 80%;
-  background: rgb(248, 58, 58);
-  border-radius: 10px;
-  color: white;
-  padding: 2px 0 2px 0;
-}
-
 .new-idea-form {
   display: flex;
   flex-grow: 1;
@@ -49,3 +39,18 @@
   resize: none;
 }
 
+.submit-btn {
+  width: 20%;
+  font-size: 1.2rem;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #ffd4ac;
+  color: #99cef4;
+}
+
+.submit-btn:hover {
+  background: #99cef4;
+  color: #ffd4ac;
+  cursor: pointer;
+}

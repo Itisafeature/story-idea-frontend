@@ -8,8 +8,14 @@ import styles from './ShowIdea.module.css';
 const URL = 'http://localhost:3001/api/v1/ideas/';
 
 const ShowIdea = () => {
-  const [comments, setComments] = useState([]);
   const { isLoading, isError, sendRequest, data } = useApiRequest();
+  const {
+    isLoading: commentsIsLoading,
+    isError: commentsIsError,
+    sendRequest: fetchComments,
+    data: comments,
+    setData: setComments,
+  } = useApiRequest();
   const { id } = useParams();
   const { attributes: idea } = data;
 
@@ -18,10 +24,8 @@ const ShowIdea = () => {
   }, [sendRequest]);
 
   useEffect(() => {
-    if (idea) {
-      setComments(idea.comments.data);
-    }
-  }, [idea]);
+    fetchComments(`${URL}${id}/comments`, 'get');
+  }, [fetchComments]);
 
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);

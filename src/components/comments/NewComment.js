@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ActionButton from '../UI/ActionButton';
+import ShowErrors from '../UI/ShowErrors';
 import styles from './NewComment.module.css';
 
 const URL = 'http://localhost:3001/api/v1/comments';
 
 const NewComment = ({ addComment, ideaId }) => {
   const [content, setContent] = useState('');
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    if (isError) {
+      setTimeout(() => {
+        setIsError(false);
+        setErrorMessage(null);
+      }, 5000);
+    }
+  }, [isError]);
 
   const newCommentSubmitHandler = async e => {
     e.preventDefault();
@@ -22,8 +34,14 @@ const NewComment = ({ addComment, ideaId }) => {
         }),
       });
       const data = await response.json();
-      addComment(data.data);
-      setContent('');
+
+      if (!response.ok) {
+        setIsError(true);
+        setErrorMessage(data);
+      } else {
+        addComment(data.data);
+        setContent('');
+      }
     } catch (err) {
       console.log(err);
     }
@@ -31,6 +49,7 @@ const NewComment = ({ addComment, ideaId }) => {
 
   return (
     <>
+      {isError && <ShowErrors errorMessage={errorMessage} />}
       <h1 className={styles['leave-comment']}>Leave a Comment</h1>
       <form
         onSubmit={newCommentSubmitHandler}

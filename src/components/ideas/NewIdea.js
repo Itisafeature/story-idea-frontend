@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useApiRequest from '../../hooks/useApiRequest';
 import ActionButton from '../UI/ActionButton';
+import ShowErrors from '../UI/ShowErrors';
 import styles from './NewIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas';
@@ -21,18 +22,10 @@ const NewIdea = () => {
     sendRequest(URL, 'post', newIdea, resetForm);
   };
 
-  const renderErrors = () => {
-    return Object.values(errorMessage).map((err, idx) => (
-      <p key={idx} className={styles['error__item']}>
-        {err}
-      </p>
-    ));
-  };
-
   return (
     <div className={styles['form-container']}>
       <h1 className={styles['new-idea-title']}>Submit Your Idea!</h1>
-      {isError && <div className={styles.errors}>{renderErrors()}</div>}
+      {isError && <ShowErrors errorMessage={errorMessage} />}
       <form className={styles['new-idea-form']} onSubmit={submitIdeaHandler}>
         <label className={styles['input-label']} htmlFor="new-idea-title">
           Title
