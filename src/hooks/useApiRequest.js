@@ -5,6 +5,7 @@ const useApiRequest = () => {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [data, setData] = useState([]);
+  const [totalCount, setTotalCount] = useState(null);
 
   const configureRequest = (method, body) => {
     const options = {};
@@ -39,6 +40,11 @@ const useApiRequest = () => {
           } else {
             setData(data.data);
           }
+
+          if (data.meta) {
+            setTotalCount(data.meta.total_count);
+          }
+
           setIsError(false);
           setErrorMessage(null);
           if (cleanupFn) cleanupFn();
@@ -50,7 +56,7 @@ const useApiRequest = () => {
 
       setIsLoading(false);
     },
-    []
+    [] // useCallback dependency array
   );
 
   return {
@@ -60,6 +66,7 @@ const useApiRequest = () => {
     sendRequest,
     data,
     setData,
+    totalCount,
   };
 };
 

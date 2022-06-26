@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import useApiRequest from '../../hooks/useApiRequest';
 import NewComment from '../comments/NewComment';
@@ -10,6 +10,7 @@ const COMMENT_LIMIT = 5;
 
 const ShowIdea = () => {
   const [commentPage, setCommentPage] = useState(0);
+  const [hasMoreComments, setHasMoreComments] = useState(true);
   const { isLoading, isError, sendRequest, data } = useApiRequest();
   const {
     isLoading: commentsIsLoading,
@@ -17,17 +18,15 @@ const ShowIdea = () => {
     sendRequest: fetchComments,
     data: comments,
     setData: setComments,
+    totalCount: commentsCount,
   } = useApiRequest();
+
   const { id } = useParams();
   const { attributes: idea } = data;
 
   useEffect(() => {
     sendRequest(URL + id, 'get');
   }, [sendRequest]);
-
-  useEffect(() => {
-    getMoreComments();
-  }, [fetchComments]);
 
   const getMoreComments = () => {
     fetchComments(
@@ -38,6 +37,16 @@ const ShowIdea = () => {
     );
     setCommentPage(prevCommentPage => prevCommentPage + 1);
   };
+
+  useEffect(() => {
+    if (commentsCount && comments.length >= commentsCount) {
+      setHasMoreComments(false);
+    }
+  }, [comments]);
+
+  useEffect(() => {
+    getMoreComments();
+  }, []);
 
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);
@@ -62,9 +71,16 @@ const ShowIdea = () => {
           </div>
 
           <CommentsList comments={comments} />
-          <p onClick={getMoreComments} className={styles['view-comments']}>
-            View More Comments
-          </p>
+          {hasMoreComments && (
+            <p onClick={getMoreComments} className={styles['view-comments']}>
+              View More Comments
+            </p>
+          )}
+          {!hasMoreComments && (
+            <p className={styles['no-more-comments']}>
+              No More Comments Available
+            </p>
+          )}
         </div>
       </article>
     </section>

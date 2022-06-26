@@ -25,10 +25,14 @@
   width: 100%;
 }
 
+.no-more-comments,
+.view-comments {
+  text-align: center;
+}
+
 .view-comments {
   text-decoration: underline;
   color: blue;
-  text-align: center;
 }
 
 .view-comments:hover {
