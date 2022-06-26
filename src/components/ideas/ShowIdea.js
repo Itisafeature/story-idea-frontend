@@ -6,8 +6,10 @@ import CommentsList from '../comments/CommentsList';
 import styles from './ShowIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas/';
+const COMMENT_LIMIT = 5;
 
 const ShowIdea = () => {
+  const [commentPage, setCommentPage] = useState(0);
   const { isLoading, isError, sendRequest, data } = useApiRequest();
   const {
     isLoading: commentsIsLoading,
@@ -24,8 +26,18 @@ const ShowIdea = () => {
   }, [sendRequest]);
 
   useEffect(() => {
-    fetchComments(`${URL}${id}/comments`, 'get');
+    getMoreComments();
   }, [fetchComments]);
+
+  const getMoreComments = () => {
+    fetchComments(
+      `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
+      'get',
+      null,
+      true
+    );
+    setCommentPage(prevCommentPage => prevCommentPage + 1);
+  };
 
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);
@@ -48,7 +60,11 @@ const ShowIdea = () => {
           <div className={styles['add-comment-container']}>
             <NewComment addComment={addComment} ideaId={idea.id} />
           </div>
+
           <CommentsList comments={comments} />
+          <p onClick={getMoreComments} className={styles['view-comments']}>
+            View More Comments
+          </p>
         </div>
       </article>
     </section>

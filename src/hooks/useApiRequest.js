@@ -22,29 +22,36 @@ const useApiRequest = () => {
     return options;
   };
 
-  const sendRequest = useCallback(async (url, method, body, cleanupFn) => {
-    const options = configureRequest(method, body);
+  const sendRequest = useCallback(
+    async (url, method, body, addToExisting, cleanupFn) => {
+      const options = configureRequest(method, body);
 
-    try {
-      const response = await fetch(url, options);
-      const data = await response.json();
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
 
-      if (!response.ok) {
+        if (!response.ok) {
+          setIsError(true);
+          setErrorMessage(data);
+        } else {
+          if (addToExisting) {
+            setData(prevData => [...prevData, ...data.data]);
+          } else {
+            setData(data.data);
+          }
+          setIsError(false);
+          setErrorMessage(null);
+          if (cleanupFn) cleanupFn();
+        }
+      } catch (err) {
         setIsError(true);
-        setErrorMessage(data);
-      } else {
-        setData(data.data);
-        setIsError(false);
-        setErrorMessage(null);
-        if (cleanupFn) cleanupFn();
+        setErrorMessage('Something Went Wrong');
       }
-    } catch (err) {
-      setIsError(true);
-      setErrorMessage('Something Went Wrong');
-    }
 
-    setIsLoading(false);
-  }, []);
+      setIsLoading(false);
+    },
+    []
+  );
 
   return {
     isLoading,

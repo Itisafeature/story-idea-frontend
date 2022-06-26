@@ -24,3 +24,13 @@
 .add-comment-container {
   width: 100%;
 }
+
+.view-comments {
+  text-decoration: underline;
+  color: blue;
+  text-align: center;
+}
+
+.view-comments:hover {
+  cursor: pointer;
+}
