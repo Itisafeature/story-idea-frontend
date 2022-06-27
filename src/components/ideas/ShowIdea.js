@@ -39,7 +39,10 @@ const ShowIdea = () => {
   };
 
   useEffect(() => {
-    if (commentsCount && comments.length >= commentsCount) {
+    if (
+      (commentsCount || commentsCount === 0) &&
+      comments.length >= commentsCount
+    ) {
       setHasMoreComments(false);
     }
   }, [comments]);
@@ -47,6 +50,8 @@ const ShowIdea = () => {
   useEffect(() => {
     getMoreComments();
   }, []);
+
+  console.log(commentsCount);
 
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);
