@@ -34,21 +34,14 @@ const ShowIdea = () => {
     fetchIdea(URL + id, 'get');
   }, [fetchIdea, id]);
 
-  const getMoreComments = useCallback(
-    page => {
-      fetchComments(
-        `${URL}${id}/comments?page=${page}&limit=${COMMENT_LIMIT}`,
-        'get',
-        null,
-        true
-      );
-    },
-    [fetchComments, id]
-  );
-
   useEffect(() => {
-    getMoreComments(commentPage);
-  }, [getMoreComments]);
+    fetchComments(
+      `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
+      'get',
+      null,
+      true
+    );
+  }, [fetchComments, id]);
 
   useEffect(() => {
     if (!firstRender.current) {
@@ -90,7 +83,14 @@ const ShowIdea = () => {
           <CommentsList comments={comments} />
           {hasMoreComments && (
             <p
-              onClick={() => getMoreComments(commentPage)}
+              onClick={() =>
+                fetchComments(
+                  `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
+                  'get',
+                  null,
+                  true
+                )
+              }
               className={styles['view-comments']}
             >
               View More Comments
