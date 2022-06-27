@@ -51,8 +51,6 @@ const ShowIdea = () => {
     getMoreComments();
   }, []);
 
-  console.log(commentsCount);
-
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);
   };
