@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useApiRequest from '../../hooks/useApiRequest';
 import NewComment from '../comments/NewComment';
@@ -11,7 +11,12 @@ const COMMENT_LIMIT = 5;
 const ShowIdea = () => {
   const [commentPage, setCommentPage] = useState(0);
   const [hasMoreComments, setHasMoreComments] = useState(true);
-  const { isLoading, isError, sendRequest, data } = useApiRequest();
+  const {
+    isLoading: ideaIsLoading,
+    isError: ideaIsError,
+    sendRequest: fetchIdea,
+    data: ideaData,
+  } = useApiRequest();
   const {
     isLoading: commentsIsLoading,
     isError: commentsIsError,
@@ -20,46 +25,55 @@ const ShowIdea = () => {
     setData: setComments,
     totalCount: commentsCount,
   } = useApiRequest();
+  const firstRender = useRef(true);
 
   const { id } = useParams();
-  const { attributes: idea } = data;
+  const { attributes: idea } = ideaData;
 
   useEffect(() => {
-    sendRequest(URL + id, 'get');
-  }, [sendRequest]);
+    fetchIdea(URL + id, 'get');
+  }, [fetchIdea, id]);
 
-  const getMoreComments = () => {
-    fetchComments(
-      `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
-      'get',
-      null,
-      true
-    );
-    setCommentPage(prevCommentPage => prevCommentPage + 1);
-  };
+  const getMoreComments = useCallback(
+    page => {
+      fetchComments(
+        `${URL}${id}/comments?page=${page}&limit=${COMMENT_LIMIT}`,
+        'get',
+        null,
+        true
+      );
+    },
+    [fetchComments, id]
+  );
 
   useEffect(() => {
+    getMoreComments(commentPage);
+  }, [getMoreComments]);
+
+  useEffect(() => {
+    if (!firstRender.current) {
+      setCommentPage(prevCommentPage => prevCommentPage + 1);
+    } else {
+      firstRender.current = false;
+    }
+
     if (
       (commentsCount || commentsCount === 0) &&
       comments.length >= commentsCount
     ) {
       setHasMoreComments(false);
     }
-  }, [comments]);
-
-  useEffect(() => {
-    getMoreComments();
-  }, []);
+  }, [comments, commentsCount]);
 
   const addComment = newComment => {
     setComments(prevComments => [newComment, ...prevComments]);
   };
 
-  if (isLoading) {
+  if (ideaIsLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (ideaIsError) {
     return <div>Sorry there was an error.</div>;
   }
 
@@ -75,7 +89,10 @@ const ShowIdea = () => {
 
           <CommentsList comments={comments} />
           {hasMoreComments && (
-            <p onClick={getMoreComments} className={styles['view-comments']}>
+            <p
+              onClick={() => getMoreComments(commentPage)}
+              className={styles['view-comments']}
+            >
               View More Comments
             </p>
           )}
