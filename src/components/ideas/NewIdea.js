@@ -7,7 +7,7 @@ import styles from './NewIdea.module.css';
 const URL = 'http://localhost:3001/api/v1/ideas';
 
 const NewIdea = () => {
-  const { isError, errorMessage, sendRequest, data } = useApiRequest();
+  const { isError, errorMessage, sendRequest } = useApiRequest();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 

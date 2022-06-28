@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useApiRequest from '../../hooks/useApiRequest';
 import ActionButton from '../UI/ActionButton';
 import ShowErrors from '../UI/ShowErrors';
 import styles from './NewComment.module.css';
@@ -7,49 +8,40 @@ const URL = 'http://localhost:3001/api/v1/comments';
 
 const NewComment = ({ addComment, ideaId }) => {
   const [content, setContent] = useState('');
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [showError, setShowError] = useState(false);
+  const { isError, errorMessage, errorCount, sendRequest, data } =
+    useApiRequest();
 
   useEffect(() => {
-    if (isError) {
-      setTimeout(() => {
-        setIsError(false);
-        setErrorMessage(null);
+    let timeoutId;
+    if (errorCount > 0) {
+      setShowError(true);
+      timeoutId = setTimeout(() => {
+        setShowError(false);
       }, 5000);
+      return () => clearTimeout(timeoutId);
     }
-  }, [isError]);
+  }, [errorCount]);
+
+  useEffect(() => {
+    if (data.constructor === Object && data.id) {
+      addComment(data);
+    }
+  }, [data]);
+
+  const resetForm = () => {
+    setContent('');
+  };
 
   const newCommentSubmitHandler = async e => {
     e.preventDefault();
-    try {
-      const response = await fetch(URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          content,
-          idea_id: ideaId,
-        }),
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        setIsError(true);
-        setErrorMessage(data);
-      } else {
-        addComment(data.data);
-        setContent('');
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    const newComment = { content, idea_id: ideaId };
+    sendRequest(URL, 'post', newComment, null, resetForm);
   };
 
   return (
     <>
-      {isError && <ShowErrors errorMessage={errorMessage} />}
+      {showError && <ShowErrors errorMessage={errorMessage} />}
       <h1 className={styles['leave-comment']}>Leave a Comment</h1>
       <form
         onSubmit={newCommentSubmitHandler}

@@ -4,6 +4,7 @@ const useApiRequest = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [errorCount, setErrorCount] = useState(0);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(null);
 
@@ -33,6 +34,7 @@ const useApiRequest = () => {
         if (!response.ok) {
           setIsError(true);
           setErrorMessage(data);
+          setErrorCount(prevErrorCount => prevErrorCount + 1);
         } else {
           if (addToExisting) {
             setData(prevData => [...prevData, ...data.data]);
@@ -63,6 +65,7 @@ const useApiRequest = () => {
     isLoading,
     isError,
     errorMessage,
+    errorCount,
     sendRequest,
     data,
     setData,
