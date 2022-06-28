@@ -20,7 +20,7 @@ const IdeasList = () => {
   const [ideaPage, setIdeaPage] = useState(0);
   const [hasMoreIdeas, setHasMoreIdeas] = useState(true);
 
-  const firstRender = useRef();
+  const firstRender = useRef(true);
 
   useEffect(() => {
     fetchIdeas(`${URL}?page=${ideaPage}&limit=${LIMIT}`, 'get', null, true);
@@ -37,8 +37,6 @@ const IdeasList = () => {
       setHasMoreIdeas(false);
     }
   }, [ideas, ideasCount]);
-
-  console.log(ideas.length);
 
   if (!ideas) {
     return <div>Loading...</div>;

@@ -26,7 +26,6 @@ const useApiRequest = () => {
   const sendRequest = useCallback(
     async (url, method, body, addToExisting, cleanupFn) => {
       const options = configureRequest(method, body);
-
       try {
         const response = await fetch(url, options);
         const data = await response.json();
