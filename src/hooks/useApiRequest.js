@@ -46,6 +46,7 @@ const useApiRequest = () => {
 
           setIsError(false);
           setErrorMessage(null);
+
           if (cleanupFn) cleanupFn();
         }
       } catch (err) {

@@ -19,7 +19,7 @@ const NewIdea = () => {
   const submitIdeaHandler = async e => {
     e.preventDefault();
     const newIdea = { title, content };
-    sendRequest(URL, 'post', newIdea, resetForm);
+    sendRequest(URL, 'post', newIdea, null, resetForm);
   };
 
   return (
