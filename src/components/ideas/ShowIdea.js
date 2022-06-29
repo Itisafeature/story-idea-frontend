@@ -77,14 +77,11 @@ const ShowIdea = () => {
           <div className={styles['add-comment-container']}>
             <NewComment addComment={addComment} ideaId={idea.id} />
           </div>
-
           <CommentsList
-            url={URL}
+            isLoading={commentsIsLoading}
+            url={`${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`}
             hasMoreComments={hasMoreComments}
             fetchComments={fetchComments}
-            id={id}
-            commentLimit={COMMENT_LIMIT}
-            commentPage={commentPage}
             comments={comments}
           />
         </div>

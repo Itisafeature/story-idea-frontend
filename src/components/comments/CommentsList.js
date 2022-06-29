@@ -1,15 +1,17 @@
+import LoadingSpinner from '../UI/LoadingSpinner';
 import styles from './CommentsList.module.css';
 
 const CommentsList = ({
   url,
-  hasMoreComments,
   fetchComments,
-  id,
-  commentPage,
   comments,
-  commentLimit,
+  hasMoreComments,
+  isLoading,
 }) => {
-  console.log(id);
+  if (comments.length === 0 && isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <>
       <div className={styles.comments}>
@@ -21,22 +23,17 @@ const CommentsList = ({
         ))}
       </div>
 
-      {hasMoreComments && (
+      {isLoading && <LoadingSpinner />}
+
+      {!isLoading && hasMoreComments && (
         <p
-          onClick={() =>
-            fetchComments(
-              `${URL}${id}/comments?page=${commentPage}&limit=${commentLimit}`,
-              'get',
-              null,
-              true
-            )
-          }
+          onClick={() => fetchComments(url, 'get', null, true)}
           className={styles['view-comments']}
         >
           View More Comments
         </p>
       )}
-      {!hasMoreComments && (
+      {!isLoading && !hasMoreComments && (
         <p className={styles['no-more-comments']}>No More Comments Available</p>
       )}
     </>
