@@ -5,6 +5,7 @@ import NewComment from '../comments/NewComment';
 import CommentsList from '../comments/CommentsList';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import styles from './ShowIdea.module.css';
+import ShowGeneralErrors from '../UI/ShowGeneralError';
 
 const URL = 'http://localhost:3001/api/v1/ideas/';
 const COMMENT_LIMIT = 5;
@@ -65,7 +66,7 @@ const ShowIdea = () => {
   }
 
   if (ideaIsError) {
-    return <div>Sorry there was an error.</div>;
+    return <ShowGeneralErrors />;
   }
 
   return (

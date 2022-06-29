@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useApiRequest from '../../hooks/useApiRequest';
 import ActionButton from '../UI/ActionButton';
-import ShowErrors from '../UI/ShowErrors';
+import ShowFormErrors from '../UI/ShowFormErrors';
 import styles from './NewComment.module.css';
 
 const URL = 'http://localhost:3001/api/v1/comments';
@@ -41,7 +41,7 @@ const NewComment = ({ addComment, ideaId }) => {
 
   return (
     <>
-      {showError && <ShowErrors errorMessage={errorMessage} />}
+      {showError && <ShowFormErrors errorMessage={errorMessage} />}
       <h1 className={styles['leave-comment']}>Leave a Comment</h1>
       <form
         onSubmit={newCommentSubmitHandler}

@@ -5,6 +5,7 @@ import useApiRequest from '../../hooks/useApiRequest';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './RecentlyCommented.module.css';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import ShowGeneralErrors from '../UI/ShowGeneralError';
 
 const URL = 'http://localhost:3001/api/v1/ideas/recently-commented';
 
@@ -18,6 +19,10 @@ const RecentlyCommented = () => {
 
   if (isLoading) {
     return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <ShowGeneralErrors />;
   }
 
   return (

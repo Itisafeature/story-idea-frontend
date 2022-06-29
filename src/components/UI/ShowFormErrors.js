@@ -1,4 +1,4 @@
-import styles from './ShowErrors.module.css';
+import styles from './ShowFormErrors.module.css';
 
 const ShowErrors = ({ errorMessage }) => {
   const renderErrors = () => {

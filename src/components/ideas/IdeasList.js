@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useApiRequest from '../../hooks/useApiRequest';
 import LoadingSpinner from '../UI/LoadingSpinner';
+import ShowGeneralErrors from '../UI/ShowGeneralError';
 import IdeaCard from './IdeaCard';
 import styles from './IdeasList.module.css';
 
@@ -40,14 +41,12 @@ const IdeasList = () => {
   }, [ideas, ideasCount]);
 
   if (ideasIsError) {
-    return <div>Sorry there was an error</div>;
+    return <ShowGeneralErrors />;
   }
 
   if (ideasIsLoading) {
     return <LoadingSpinner />;
   }
-
-  console.log(ideasIsLoading);
 
   return (
     <>
@@ -63,8 +62,7 @@ const IdeasList = () => {
           )
         }
         hasMore={hasMoreIdeas}
-        // loader={<LoadingSpinner />}
-        loader={<h4>Loading...</h4>}
+        loader={<LoadingSpinner />}
         endMessage={<p className={styles.end}>That's all for now!</p>}
       >
         <div className={styles['ideas-container']}>
