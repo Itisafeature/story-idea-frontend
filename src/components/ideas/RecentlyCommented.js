@@ -21,18 +21,11 @@ const RecentlyCommented = () => {
       <Carousel
         additionalTransfrom={0}
         arrows
-        autoPlaySpeed={3000}
         className="carousel"
         containerClass={styles.carousel}
-        draggable
         focusOnSelect={false}
-        itemClass=""
         keyBoardControl
         minimumTouchDrag={80}
-        pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside
         responsive={{
           desktop: {
             breakpoint: {
@@ -56,10 +49,7 @@ const RecentlyCommented = () => {
             items: 1,
           },
         }}
-        rewind={false}
-        rewindWithAnimation={false}
         rtl={false}
-        shouldResetAutoplay
         slidesToSlide={3}
         swipeable
       >

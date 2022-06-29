@@ -32,16 +32,13 @@ const ShowIdea = () => {
 
   useEffect(() => {
     fetchIdea(URL + id, 'get');
-  }, [fetchIdea, id]);
-
-  useEffect(() => {
     fetchComments(
       `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
       'get',
       null,
       true
     );
-  }, [fetchComments, id]);
+  }, [fetchIdea, fetchComments, id]);
 
   useEffect(() => {
     if (!firstRender.current) {

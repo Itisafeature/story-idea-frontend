@@ -16,6 +16,7 @@ const Header = () => {
                 isActive ? styles.active : undefined
               }
               to="/new-idea"
+              end
             >
               New Idea
             </NavLink>
@@ -26,6 +27,7 @@ const Header = () => {
                 isActive ? styles.active : undefined
               }
               to="/ideas"
+              end
             >
               See Ideas
             </NavLink>
@@ -36,6 +38,7 @@ const Header = () => {
                 isActive ? styles.active : undefined
               }
               to="/most-recently-commented"
+              end
             >
               Recently Commented
             </NavLink>
