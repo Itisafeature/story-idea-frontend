@@ -20,3 +20,17 @@
 .comment-card p:first-of-type {
   font-weight: 600;
 }
+
+.no-more-comments,
+.view-comments {
+  text-align: center;
+}
+
+.view-comments {
+  text-decoration: underline;
+  color: blue;
+}
+
+.view-comments:hover {
+  cursor: pointer;
+}

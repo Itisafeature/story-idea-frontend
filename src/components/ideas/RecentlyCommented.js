@@ -4,6 +4,7 @@ import IdeaCard from './IdeaCard';
 import useApiRequest from '../../hooks/useApiRequest';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './RecentlyCommented.module.css';
+import LoadingSpinner from '../UI/LoadingSpinner';
 
 const URL = 'http://localhost:3001/api/v1/ideas/recently-commented';
 
@@ -14,6 +15,10 @@ const RecentlyCommented = () => {
   useEffect(() => {
     sendRequest(URL, 'get', null);
   }, [sendRequest]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className={styles['carousel-container']}>

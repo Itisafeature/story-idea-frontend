@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useApiRequest from '../../hooks/useApiRequest';
 import NewComment from '../comments/NewComment';
 import CommentsList from '../comments/CommentsList';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import styles from './ShowIdea.module.css';
 
 const URL = 'http://localhost:3001/api/v1/ideas/';
@@ -60,7 +61,7 @@ const ShowIdea = () => {
   };
 
   if (ideaIsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (ideaIsError) {
@@ -77,27 +78,15 @@ const ShowIdea = () => {
             <NewComment addComment={addComment} ideaId={idea.id} />
           </div>
 
-          <CommentsList comments={comments} />
-          {hasMoreComments && (
-            <p
-              onClick={() =>
-                fetchComments(
-                  `${URL}${id}/comments?page=${commentPage}&limit=${COMMENT_LIMIT}`,
-                  'get',
-                  null,
-                  true
-                )
-              }
-              className={styles['view-comments']}
-            >
-              View More Comments
-            </p>
-          )}
-          {!hasMoreComments && (
-            <p className={styles['no-more-comments']}>
-              No More Comments Available
-            </p>
-          )}
+          <CommentsList
+            url={URL}
+            hasMoreComments={hasMoreComments}
+            fetchComments={fetchComments}
+            id={id}
+            commentLimit={COMMENT_LIMIT}
+            commentPage={commentPage}
+            comments={comments}
+          />
         </div>
       </article>
     </section>

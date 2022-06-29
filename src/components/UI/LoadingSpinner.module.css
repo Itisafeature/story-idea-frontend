@@ -1,0 +1,15 @@
+.loader {
+  border-radius: 50%;
+  border: 8px solid #fdaafdd6;
+  border-top: 8px solid #fdf6896b;
+  margin: auto;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
