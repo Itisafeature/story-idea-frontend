@@ -61,6 +61,7 @@ const IdeasList = () => {
             true
           )
         }
+        scrollThreshold={1.0}
         hasMore={hasMoreIdeas}
         loader={<LoadingSpinner />}
         endMessage={<p className={styles.end}>That's all for now!</p>}
