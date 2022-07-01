@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
   background-color: lightcoral;
+  position: relative;
+  z-index: 1;
+
 }
 
 .main-header img {
@@ -41,3 +44,43 @@
 .nav-item a.active {
   color: purple;
 }
+
+.hamburger__icon {
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #283b8b;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger__icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: lightblue;
+    /* display: none; */
+  }
+
+  .nav-item {
+
+    margin: 0px auto 10px auto;
+  }
+}
+
